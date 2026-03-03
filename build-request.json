@@ -1,0 +1,225 @@
+{
+  "kind": "build_request",
+  "title": "FoodGuard AI — Food Health Scanner App",
+  "projectName": "FoodGuard AI",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a Splash Screen that displays the FoodGuard AI logo, app name, and a brief tagline, shown briefly on app launch before transitioning to the Home Screen.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Splash Screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Splash screen is shown on initial app load for approximately 2 seconds",
+        "Displays the app logo, name 'FoodGuard AI', and a short tagline",
+        "Automatically transitions to the Home Screen after the delay"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a Home Screen with a prominent 'Scan Food' button, navigation to the Profile screen, and a brief description of the app's purpose.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Home Screen (Scan Button)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home screen displays a large, tappable 'Scan Food' button",
+        "Navigation link/icon to the Profile screen is accessible from Home",
+        "Brief description or tagline is visible below the app name"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement a Camera Screen that activates the device camera when 'Scan Food' is pressed, allowing the user to capture an image of a food item or packaged food label/barcode. Provide a 'Capture' button and display a viewfinder overlay.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Camera Food Scan",
+          "Camera Screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Camera view is shown using the browser MediaDevices API",
+        "A 'Capture' button takes a snapshot of the current frame",
+        "A viewfinder/frame overlay guides the user to position the food item",
+        "User can cancel and return to the Home Screen"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement a food analysis simulation on the backend: given a food item name (string input from the frontend after image capture), return a structured result including food name, estimated calories, sugar level (Low/Medium/High), fat level (Low/Medium/High), a health score (0–100), and a status (Safe / Moderate / Harmful). Store a predefined database of at least 20 common foods with realistic nutritional data.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "AI identifies food type",
+          "Food name",
+          "Estimated calories",
+          "Sugar level",
+          "Fat level",
+          "Health Score (0–100)",
+          "Status: Safe / Moderate / Harmful"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a query function that accepts a food name string and returns a FoodResult record",
+        "FoodResult includes: foodName, calories, sugarLevel, fatLevel, healthScore (0–100), status ('Safe' | 'Moderate' | 'Harmful')",
+        "At least 20 common food items are stored with realistic nutritional values",
+        "Health score is computed using the scoring rules: high sugar -20, high fat -15, preservatives -10 from a base of 100",
+        "Status maps correctly: 80–100 = Safe, 50–79 = Moderate, below 50 = Harmful"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement a packaged food ingredient scanner on the frontend: after capturing an image of an ingredient label, simulate OCR by displaying a text input where the user can paste/type extracted ingredient text. Parse the text to detect harmful ingredients: high sugar, MSG, artificial colors (e.g., Red 40, Yellow 5), and preservatives (e.g., sodium benzoate, BHA, BHT). Display warning badges for each detected harmful ingredient.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Scan barcode OR scan ingredients label",
+          "Extract text using OCR",
+          "Detect harmful ingredients",
+          "High sugar",
+          "MSG",
+          "Artificial colors",
+          "Preservatives",
+          "Show warning message if risky"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A text area or input field is presented after 'label scan' mode is selected, accepting ingredient text",
+        "The system detects at least: high sugar/sugar variants, MSG/monosodium glutamate, artificial color names (Red 40, Yellow 5, Blue 1, etc.), and common preservatives (sodium benzoate, BHA, BHT, TBHQ)",
+        "Each detected harmful ingredient is shown as a colored warning badge",
+        "A summary warning message is shown if any harmful ingredient is detected",
+        "Backend stores the list of harmful ingredient keywords used for detection"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Implement a Result Screen that displays the full health analysis after a scan: food name, calories, sugar level, fat level, a visual circular health score gauge (0–100), color-coded status badge (Green = Safe, Yellow = Moderate, Red = Harmful), and a list of any detected harmful ingredients with warning icons.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Result Screen (Score + Details)",
+          "Health Score (0–100)",
+          "Status: Safe / Moderate / Harmful",
+          "Show warning message if risky"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Result screen renders after a scan is completed",
+        "Displays food name, estimated calories, sugar level, and fat level",
+        "A circular gauge or progress arc displays the health score (0–100)",
+        "Status badge is green for Safe (80–100), yellow for Moderate (50–79), red for Harmful (<50)",
+        "Harmful ingredient warnings are listed with warning icons when present",
+        "A 'Scan Again' button returns the user to the Camera Screen"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement a Profile Screen where users can enter and save their personal health information: age, weight, and one or more health conditions (options include: Diabetes, High Blood Pressure, High Cholesterol, Heart Disease, Obesity, None). Store profile data in the backend per session.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Personal Health Mode",
+          "User enters: Age, Weight, Health condition (Diabetes, BP, etc.)",
+          "Profile Screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Profile screen has input fields for age (number), weight (number, kg), and a multi-select or checkbox list of health conditions",
+        "A 'Save Profile' button persists the data to the backend",
+        "Saved profile data is loaded and pre-filled when the user revisits the Profile screen",
+        "Backend stores the user profile with age, weight, and conditions array"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement personalized health warnings on the Result Screen based on the saved user profile: after computing the food's health data, cross-reference with the user's health conditions and display condition-specific warnings (e.g., 'Not recommended for diabetic users' if the food has high sugar and the user has Diabetes; 'High fat content — caution for heart disease' if fat is high and the user has Heart Disease).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "AI gives personalized warning: 'Not recommended for diabetic users.'"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a function that accepts a food result and a user profile and returns a list of personalized warning strings",
+        "At least 4 condition-food interactions are handled: Diabetes + high sugar, High Blood Pressure + high sodium/preservatives, Heart Disease + high fat, Obesity + high calories",
+        "Personalized warnings are displayed as a distinct section on the Result Screen with an alert icon",
+        "No warnings are shown if the user has no saved health conditions or if the food poses no relevant risk"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a cohesive visual design across all screens: use a clean, health-focused aesthetic with a deep green and white primary palette, bold modern typography, card-based layouts, and smooth page transitions. The design should feel medical-grade yet approachable, with clear iconography and ample whitespace.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "🎨 UI Screens"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All screens share a consistent color palette (deep green primary, white backgrounds, red/yellow/green for status indicators)",
+        "Typography is consistent using a single modern sans-serif font scale",
+        "Cards are used to group content sections on Result and Profile screens",
+        "Navigation between screens uses smooth CSS transitions",
+        "The app is responsive and optimized for a mobile viewport (max-width ~430px)"
+      ]
+    }
+  ],
+  "constraints": [
+    "No real AI or ML model integration — food identification and OCR must be simulated using predefined data and keyword matching",
+    "No external camera SDKs — use the browser's native MediaDevices API for camera access",
+    "No barcode scanning library integration — barcode mode can show a UI placeholder or manual entry fallback",
+    "All data must be stored in the Motoko backend; no external databases",
+    "App must be optimized for mobile viewport widths"
+  ],
+  "nonGoals": [
+    "Real-time AI image recognition or cloud ML inference",
+    "Actual OCR processing of captured images",
+    "Real barcode decoding",
+    "User authentication or multi-user accounts",
+    "Nutritional database API integrations (USDA, Open Food Facts, etc.)",
+    "Calorie tracking history or meal logging over time",
+    "Push notifications or reminders"
+  ],
+  "imageRequirements": {
+    "required": [
+      "FoodGuard AI app logo: a stylized shield icon with a green leaf or checkmark inside, clean and modern on a white background (foodguard-logo.dim_256x256.png)",
+      "Splash screen background: soft gradient from deep green to light mint, abstract healthy food silhouettes subtly blended in (splash-bg.dim_1080x1920.png)",
+      "Home screen hero illustration: a flat-style illustration of a hand holding a smartphone scanning a bowl of colorful fresh food (home-hero.dim_800x600.png)"
+    ],
+    "edits": []
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "FoodGuard AI — Food Health Scanner App Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement Splash Screen with logo, app name, and tagline that auto-transitions to Home Screen",
+      "acceptanceCriteria": [
+        "Splash screen is shown on initial app load for approximately 2 seconds",
+        "Displays the app logo, name 'FoodGuard AI', and a short tagline",
+        "Automatically transitions to the Home Screen after the delay"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/SplashScreen.tsx",
+          "operation": "create",
+          "description": "Create SplashScreen component that displays the FoodGuard AI logo (frontend/public/assets/generated/foodguard-logo.dim_256x256.png), app name, tagline, and background image (frontend/public/assets/generated/splash-bg.dim_1080x1920.png). Implement useEffect with 2-second timer that navigates to home route."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for SplashScreen as the default root path ('/') and wire it to navigate to '/home' after the splash delay. Ensure Home Screen is accessible at '/home'."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement Home Screen with 'Scan Food' button, Profile navigation, and app description",
+      "acceptanceCriteria": [
+        "Home screen displays a large, tappable 'Scan Food' button",
+        "Navigation link/icon to the Profile screen is accessible from Home",
+        "Brief description or tagline is visible below the app name"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomeScreen.tsx",
+          "operation": "create",
+          "description": "Create HomeScreen component with hero illustration (frontend/public/assets/generated/home-hero.dim_800x600.png), app name 'FoodGuard AI', tagline/description, prominent 'Scan Food' button that navigates to '/camera', and Profile navigation icon/button that links to '/profile'. Use card-based layout and deep green primary colors."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/home' route for HomeScreen component and ensure it is wired into the router configuration."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement Camera Screen with device camera activation, capture button, and viewfinder overlay",
+      "acceptanceCriteria": [
+        "Camera view is shown using the browser MediaDevices API",
+        "A 'Capture' button takes a snapshot of the current frame",
+        "A viewfinder/frame overlay guides the user to position the food item",
+        "User can cancel and return to the Home Screen"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CameraScreen.tsx",
+          "operation": "create",
+          "description": "Create CameraScreen component that uses the camera component's useCamera hook to activate the device camera with facingMode: 'environment'. Display video preview with viewfinder overlay/frame, 'Capture' button to take snapshot, and 'Cancel' button to navigate back to '/home'. On capture, navigate to '/food-input' with captured image data. Verify the camera component's usage instructions before implementing. Ensure camera preview has stable dimensions (aspect-ratio wrapper or fixed min-height) and handle error states with clear messages. Disable capture button until camera is fully initialized."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/camera' route for CameraScreen component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement packaged food ingredient scanner with OCR simulation, harmful ingredient detection, and warning badges",
+      "acceptanceCriteria": [
+        "A text area or input field is presented after 'label scan' mode is selected, accepting ingredient text",
+        "The system detects at least: high sugar/sugar variants, MSG/monosodium glutamate, artificial color names (Red 40, Yellow 5, Blue 1, etc.), and common preservatives (sodium benzoate, BHA, BHT, TBHQ)",
+        "Each detected harmful ingredient is shown as a colored warning badge",
+        "A summary warning message is shown if any harmful ingredient is detected",
+        "Backend stores the list of harmful ingredient keywords used for detection"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/IngredientScanScreen.tsx",
+          "operation": "create",
+          "description": "Create IngredientScanScreen component with a large text area for user to paste/type ingredient text extracted from label. Parse the text into an array of ingredient strings (split by commas/newlines). Include a 'Scan Ingredients' button that calls backend.scanIngredients() with the parsed array. Display loading state during scan. On completion, show ProcessedIngredient results with warning badges for harmful ingredients (isHarmful: true), and a summary warning message if harmfulCount > 0. Provide 'Scan Another' button to reset and 'View Details' button to navigate to '/result' if a food name can be inferred."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/ingredient-scan' route for IngredientScanScreen component."
+        },
+        {
+          "path": "frontend/src/pages/CameraScreen.tsx",
+          "operation": "modify",
+          "description": "Add mode selection UI (e.g., tabs or toggle) to switch between 'Food Item' and 'Ingredient Label' modes. In 'Food Item' mode, navigate to '/food-input' after capture. In 'Ingredient Label' mode, navigate to '/ingredient-scan' after capture."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement Result Screen displaying food name, calories, sugar/fat levels, circular health score gauge, status badge, and harmful ingredient warnings",
+      "acceptanceCriteria": [
+        "Result screen renders after a scan is completed",
+        "Displays food name, estimated calories, sugar level, and fat level",
+        "A circular gauge or progress arc displays the health score (0–100)",
+        "Status badge is green for Safe (80–100), yellow for Moderate (50–79), red for Harmful (<50)",
+        "Harmful ingredient warnings are listed with warning icons when present",
+        "A 'Scan Again' button returns the user to the Camera Screen"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ResultScreen.tsx",
+          "operation": "create",
+          "description": "Create ResultScreen component that receives FoodAnalysisResult from navigation state or fetches via backend.analyzeFood(). Display food name, calories, sugarLevel, fatLevel using card-based layout. Render a circular gauge/progress arc component for healthScore (0–100). Display status badge with color-coding: green for 'safe' (80–100), yellow for 'moderate' (50–79), red for 'harmful' (<50). If harmful ingredients are present (from ingredient scan context), list them with warning icons. Include 'Scan Again' button navigating to '/camera' and 'View Profile' button navigating to '/profile'."
+        },
+        {
+          "path": "frontend/src/components/HealthScoreGauge.tsx",
+          "operation": "create",
+          "description": "Create reusable HealthScoreGauge component that accepts a score (0–100) prop and renders a circular SVG gauge or progress arc with color gradient based on score range (green 80–100, yellow 50–79, red <50). Display numeric score in center."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/result' route for ResultScreen component."
+        },
+        {
+          "path": "frontend/src/pages/FoodInputScreen.tsx",
+          "operation": "create",
+          "description": "Create FoodInputScreen component with a text input field for user to enter or confirm the food item name (simulate OCR/image recognition step). On submit, call backend.analyzeFood(foodName) and navigate to '/result' with the returned FoodAnalysisResult in navigation state."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/food-input' route for FoodInputScreen component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement Profile Screen for entering and saving age, weight, and health conditions",
+      "acceptanceCriteria": [
+        "Profile screen has input fields for age (number), weight (number, kg), and a multi-select or checkbox list of health conditions",
+        "A 'Save Profile' button persists the data to the backend",
+        "Saved profile data is loaded and pre-filled when the user revisits the Profile screen",
+        "Backend stores the user profile with age, weight, and conditions array"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProfileScreen.tsx",
+          "operation": "create",
+          "description": "Create ProfileScreen component with form inputs: age (number input), weight (number input, label 'kg'), and multi-select checkboxes for health conditions (Diabetes, High Blood Pressure, High Cholesterol, Heart Disease, Obesity, None). On mount, fetch existing profile via backend.getUserProfile() and pre-fill form fields. On 'Save Profile' button click, call backend.saveUserProfile() with UserProfile object containing age, weight, and healthConditions array. Show success/error feedback. Include 'Back to Home' navigation button."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register '/profile' route for ProfileScreen component."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement personalized health warnings on Result Screen based on saved user profile and food analysis",
+      "acceptanceCriteria": [
+        "Backend exposes a function that accepts a food result and a user profile and returns a list of personalized warning strings",
+        "At least 4 condition-food interactions are handled: Diabetes + high sugar, High Blood Pressure + high sodium/preservatives, Heart Disease + high fat, Obesity + high calories",
+        "Personalized warnings are displayed as a distinct section on the Result Screen with an alert icon",
+        "No warnings are shown if the user has no saved health conditions or if the food poses no relevant risk"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ResultScreen.tsx",
+          "operation": "modify",
+          "description": "After loading FoodAnalysisResult, fetch personalized warnings by calling backend.getHealthWarnings(foodName). Display returned warnings in a distinct 'Personalized Health Warnings' section with alert icons. Only show this section if warnings array is non-empty. Style warnings with yellow/orange alert styling."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply cohesive visual design with deep green and white palette, modern typography, card layouts, and smooth transitions",
+      "acceptanceCriteria": [
+        "All screens share a consistent color palette (deep green primary, white backgrounds, red/yellow/green for status indicators)",
+        "Typography is consistent using a single modern sans-serif font scale",
+        "Cards are used to group content sections on Result and Profile screens",
+        "Navigation between screens uses smooth CSS transitions",
+        "The app is responsive and optimized for a mobile viewport (max-width ~430px)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define global CSS variables for deep green primary color (#1B5E20 or similar), white backgrounds, status colors (green #4CAF50, yellow #FFC107, red #F44336), and modern sans-serif font stack (e.g., 'Inter', system-ui). Apply base typography styles, card styling classes (.card with border-radius, shadow, padding), and smooth page transition classes. Set body max-width for mobile optimization."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme to include custom colors for 'primary' (deep green), 'status-safe' (green), 'status-moderate' (yellow), 'status-harmful' (red), and 'card' (white with subtle shadow). Configure responsive breakpoints optimized for mobile viewports (max-width ~430px)."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create Layout component wrapper that applies consistent header/navigation styling, mobile-optimized container (max-width), and card-based section wrappers. Use this component to wrap all page routes for consistent design."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with Layout component to enforce consistent design and navigation structure across all screens."
+        }
+      ]
+    }
+  ]
+}

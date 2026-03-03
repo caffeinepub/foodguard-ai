@@ -1,0 +1,15 @@
+{
+  "frontend/src/index.css": "Global styles with deep forest green OKLCH color system, Plus Jakarta Sans font, mobile-optimized app container, gradient utilities, scan line animation, and status color tokens for safe/moderate/harmful states.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with Plus Jakarta Sans font, custom status colors (safe/moderate/harmful), enhanced border radii, card/glow box shadows, and fade-in/scale-in animations.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations: analyzeFood, getAllFoods, getUserProfile, saveUserProfile, scanIngredients, and getHealthWarnings with proper cache invalidation.",
+  "frontend/src/components/HealthScoreGauge.tsx": "Reusable SVG circular gauge component that renders a 240-degree arc with color-coded progress (green/yellow/red) based on health score (0–100) and displays the numeric score in the center.",
+  "frontend/src/pages/SplashScreen.tsx": "Animated splash screen with FoodGuard AI logo, app name, tagline, decorative background circles, and a 2.2-second auto-navigation timer to the home route.",
+  "frontend/src/pages/HomeScreen.tsx": "Home screen with gradient hero header, prominent \"Scan Food Now\" CTA button, feature cards grid, quick actions for ingredient scanning and profile, and footer with attribution.",
+  "frontend/src/pages/CameraScreen.tsx": "Camera screen that uses the native browser `MediaDevices` API directly (no external module dependency) with auto-start, food/label mode toggle, viewfinder overlay with animated scan line, capture/cancel controls, and full error handling.",
+  "frontend/src/pages/FoodInputScreen.tsx": "Food name input screen with live autocomplete suggestions from the 20 predefined foods, direct backend analyzeFood call, error handling, and popular food quick-select chips.",
+  "frontend/src/pages/ResultScreen.tsx": "Result screen displaying food analysis with circular health score gauge, nutritional stats (calories/sugar/fat), score breakdown, personalized health warnings from backend, and scan-again/profile navigation.",
+  "frontend/src/pages/IngredientScanScreen.tsx": "Ingredient scanner screen with textarea input for pasting label text, backend scanIngredients call, harmful ingredient detection with color-coded safe/harmful badges, and summary warning banner.",
+  "frontend/src/pages/ProfileScreen.tsx": "Profile screen with age/weight inputs, multi-select health condition checkboxes (Diabetes, BP, Cholesterol, Heart Disease, Obesity), backend save/load integration, and success/error feedback.",
+  "frontend/src/App.tsx": "TanStack Router setup with all seven routes (splash, home, camera, food-input, result, ingredient-scan, profile) and search param validation for the result route.",
+  "frontend/src/declarations.d.ts": "TypeScript ambient module declaration for the `camera/useCamera` prefabricated component, providing full type definitions for `CameraConfig`, `CameraError`, `UseCameraReturn`, and the `useCamera` hook."
+}

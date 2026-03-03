@@ -1,0 +1,168 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-splash-screen-that-displays-the-foodguard-ai-logo-app-name-and-a-brief-tagline-shown-briefly-on-app-launch-before-transitioning-to-the-home-screen",
+      "featureTitle": "Implement a Splash Screen that displays the FoodGuard AI logo, app name, and a brief tagline, shown briefly on app launch before transitioning to the Home Screen.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/SplashScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-home-screen-with-a-prominent-scan-food-button-navigation-to-the-profile-screen-and-a-brief-description-of-the-app-s-purpose",
+      "featureTitle": "Implement a Home Screen with a prominent 'Scan Food' button, navigation to the Profile screen, and a brief description of the app's purpose.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/HomeScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-camera-screen-that-activates-the-device-camera-when-scan-food-is-pressed-allowing-the-user-to-capture-an-image-of-a-food-item-or-packaged-food-label-barcode-provide-a-capture-button-and-display-a-viewfinder-overlay",
+      "featureTitle": "Implement a Camera Screen that activates the device camera when 'Scan Food' is pressed, allowing the user to capture an image of a food item or packaged food label/barcode. Provide a 'Capture' button and display a viewfinder overlay.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CameraScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-packaged-food-ingredient-scanner-on-the-frontend-after-capturing-an-image-of-an-ingredient-label-simulate-ocr-by-displaying-a-text-input-where-the-user-can-paste-type-extracted-ingredient-text-parse-the-text-to-detect-harmful-ingredients-high-sugar-msg-artificial-colors-e-g-red-40-yellow-5-and-preservatives-e-g-sodium-benzoate-bha-bht-display-warning-badges-for-each-detected-harmful-ingredient",
+      "featureTitle": "Implement a packaged food ingredient scanner on the frontend: after capturing an image of an ingredient label, simulate OCR by displaying a text input where the user can paste/type extracted ingredient text. Parse the text to detect harmful ingredients: high sugar, MSG, artificial colors (e.g., Red 40, Yellow 5), and preservatives (e.g., sodium benzoate, BHA, BHT). Display warning badges for each detected harmful ingredient.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CameraScreen.tsx",
+        "frontend/src/pages/IngredientScanScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-result-screen-that-displays-the-full-health-analysis-after-a-scan-food-name-calories-sugar-level-fat-level-a-visual-circular-health-score-gauge-0-100-color-coded-status-badge-green-safe-yellow-moderate-red-harmful-and-a-list-of-any-detected-harmful-ingredients-with-warning-icons",
+      "featureTitle": "Implement a Result Screen that displays the full health analysis after a scan: food name, calories, sugar level, fat level, a visual circular health score gauge (0–100), color-coded status badge (Green = Safe, Yellow = Moderate, Red = Harmful), and a list of any detected harmful ingredients with warning icons.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/HealthScoreGauge.tsx",
+        "frontend/src/pages/FoodInputScreen.tsx",
+        "frontend/src/pages/ResultScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-a-profile-screen-where-users-can-enter-and-save-their-personal-health-information-age-weight-and-one-or-more-health-conditions-options-include-diabetes-high-blood-pressure-high-cholesterol-heart-disease-obesity-none-store-profile-data-in-the-backend-per-session",
+      "featureTitle": "Implement a Profile Screen where users can enter and save their personal health information: age, weight, and one or more health conditions (options include: Diabetes, High Blood Pressure, High Cholesterol, Heart Disease, Obesity, None). Store profile data in the backend per session.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/ProfileScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-personalized-health-warnings-on-the-result-screen-based-on-the-saved-user-profile-after-computing-the-food-s-health-data-cross-reference-with-the-user-s-health-conditions-and-display-condition-specific-warnings-e-g-not-recommended-for-diabetic-users-if-the-food-has-high-sugar-and-the-user-has-diabetes-high-fat-content-caution-for-heart-disease-if-fat-is-high-and-the-user-has-heart-disease",
+      "featureTitle": "Implement personalized health warnings on the Result Screen based on the saved user profile: after computing the food's health data, cross-reference with the user's health conditions and display condition-specific warnings (e.g., 'Not recommended for diabetic users' if the food has high sugar and the user has Diabetes; 'High fat content — caution for heart disease' if fat is high and the user has Heart Disease).",
+      "files": [
+        "frontend/src/pages/ResultScreen.tsx"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-visual-design-across-all-screens-use-a-clean-health-focused-aesthetic-with-a-deep-green-and-white-primary-palette-bold-modern-typography-card-based-layouts-and-smooth-page-transitions-the-design-should-feel-medical-grade-yet-approachable-with-clear-iconography-and-ample-whitespace",
+      "featureTitle": "Apply a cohesive visual design across all screens: use a clean, health-focused aesthetic with a deep green and white primary palette, bold modern typography, card-based layouts, and smooth page transitions. The design should feel medical-grade yet approachable, with clear iconography and ample whitespace.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "camera@1.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko actor defining food health analysis types and a predefined dataset of 20+ foods with calories, sugar/fat levels, health scores, and status. Provides backend logic for food analysis, ingredient scanning, user profiles, and health warnings.",
+  "feature_evidence.json": "Feature evidence report mapping implemented features (splash screen, home screen, camera, ingredient scanner, result screen, etc.) to their source files, components, test IDs, and confidence levels.",
+  "frontend-file-summaries.txt": "JSON document containing one-sentence summaries for each frontend source file, serving as a quick reference for the purpose and content of every frontend module.",
+  "frontend/index.css": "Base Tailwind CSS entry file defining OKLCH-based CSS custom properties for light and dark themes, covering background, foreground, card, chart, and sidebar color tokens.",
+  "frontend/index.html": "Minimal HTML shell for the FoodGuard AI React app, mounting the app into a `#root` div and loading the main TypeScript entry point as an ES module.",
+  "frontend/src/App.tsx": "TanStack Router configuration defining all seven application routes (splash, home, camera, food-input, result, ingredient-scan, profile) with search param validation for the result route.",
+  "frontend/src/components/HealthScoreGauge.tsx": "SVG circular gauge component rendering a 240-degree arc with color-coded progress (green/yellow/red) based on a 0–100 health score, displaying the numeric score and status label.",
+  "frontend/src/hooks/useActor.ts": "React hook that creates and caches an ICP backend actor using TanStack Query, supporting both anonymous and authenticated (Internet Identity) usage, and invalidating dependent queries when the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and hook for Internet Identity authentication, managing login/logout state and persisting identity via AuthClient. Exports `InternetIdentityProvider` and `useInternetIdentity` for use throughout the app.",
+  "frontend/src/hooks/useQueries.ts": "Defines TanStack Query hooks for backend actor calls including food analysis, user profile CRUD, ingredient scanning, and health warnings. Uses `useActor` to access the canister actor and invalidates relevant queries on mutations.",
+  "frontend/src/index.css": "Global stylesheet that imports Plus Jakarta Sans, sets up Tailwind layers, and defines OKLCH-based CSS custom properties for light/dark themes including status colors, chart colors, and custom animations.",
+  "frontend/src/main.tsx": "Application entry point that renders the React app wrapped in `QueryClientProvider` and `InternetIdentityProvider`, mounting it to the root DOM element.",
+  "frontend/src/pages/CameraScreen.tsx": "Camera capture screen that accesses the device camera via `getUserMedia`, supports food and ingredient scan modes, and navigates to the appropriate input screen after capturing a photo.",
+  "frontend/src/pages/FoodInputScreen.tsx": "Screen for manually entering a food name with autocomplete suggestions, which calls the backend `analyzeFood` actor method and navigates to the result screen on success.",
+  "frontend/src/pages/HomeScreen.tsx": "Home/landing screen displaying the FoodGuard AI branding, feature highlights, and a primary CTA button that navigates to the camera scan screen.",
+  "frontend/src/pages/IngredientScanScreen.tsx": "A screen that lets users paste or type a food ingredient list, submits it to the backend via a mutation hook, and displays warning badges for detected harmful ingredients along with a count of harmful items.",
+  "frontend/src/pages/ProfileScreen.tsx": "A screen for viewing and editing the user's health profile (age, weight, health conditions), loading existing data via a query hook and saving updates via a mutation hook.",
+  "frontend/src/pages/ResultScreen.tsx": "A screen that displays the full health analysis for a scanned food item, including a health score gauge, nutrient level badges, health status, and personalized warnings fetched from the backend.",
+  "frontend/src/pages/SplashScreen.tsx": "An animated splash screen showing the FoodGuard AI logo, app name, and tagline that automatically navigates to the home screen after 2.2 seconds.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration defining custom colors (using OKLCH), border radii, shadows, keyframe animations, and font family for the FoodGuard AI app, with plugins for typography, container queries, and animations.",
+  "project_state.json": "Project state metadata describing FoodGuard AI's architecture, implemented features, image requirements, and known issues, used for build planning and feature tracking."
+}

@@ -1,0 +1,60 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-02T16:54:04.356Z",
+  "summary": "The diff implements most of the required features across frontend and backend. All major screens (Splash, Home, Camera, Result, Profile, Ingredient Scan) are present, along with backend food analysis, ingredient scanning, profile management, and personalized health warnings. A few specific acceptance criteria details need verification due to truncation, but overall coverage is strong.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Health score is computed using the scoring rules: high sugar -20, high fat -15, preservatives -10 from a base of 100",
+      "reason": "The backend file is truncated and only shows predefined static food entries with hardcoded health scores. There is no visible dynamic scoring computation function applying the stated deduction rules. Scores appear to be stored statically rather than computed.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Backend stores the list of harmful ingredient keywords used for detection",
+      "reason": "The backend file is truncated and does not show a stored list of harmful ingredient keywords. Whether the backend persists the keyword list rather than just using it inline for detection is not verifiable from the truncated diff.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/pages/IngredientScanScreen.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Internet Identity authentication integration",
+      "reason": "The spec explicitly states 'No user authentication or multi-user accounts' as a non-goal. The diff includes a full InternetIdentityProvider, useInternetIdentity hook, AuthClient setup, and identity-aware actor creation, which implements authentication infrastructure that was explicitly excluded.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/HealthScoreGauge.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CameraScreen.tsx",
+    "frontend/src/pages/FoodInputScreen.tsx",
+    "frontend/src/pages/HomeScreen.tsx",
+    "frontend/src/pages/IngredientScanScreen.tsx",
+    "frontend/src/pages/ProfileScreen.tsx",
+    "frontend/src/pages/ResultScreen.tsx",
+    "frontend/src/pages/SplashScreen.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
